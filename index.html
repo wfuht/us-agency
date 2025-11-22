@@ -3,248 +3,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>永远的拉拉</title>
+    <title>永远的拉拉 - 纪念</title>
     <style>
         :root {
-            /* 更新：复古暖色调背景 */
-            --bg-color: #3e352f; 
-            /* 更新：柔和的米色文字 */
-            --text-color: #f0e6d2;
-            --accent-gold: #d4af37;
+            /* 提取图片中的暖棕色调作为背景 */
+            --bg-color: #2c241b; 
+            --text-color: #e6dcc3;
         }
 
         body {
             margin: 0;
             padding: 0;
             background-color: var(--bg-color);
-            /* 添加一个微妙的暖色渐变背景，增加质感 */
-            background-image: radial-gradient(circle at center, #4a403a 0%, #3e352f 100%);
+            /* 增加一点光影质感 */
+            background-image: radial-gradient(circle at center top, #4a3b30 0%, #2c241b 80%);
             color: var(--text-color);
             font-family: "Songti SC", "SimSun", "Georgia", serif;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
             overflow-x: hidden;
         }
 
-        header {
-            text-align: center;
-            margin-top: 60px;
-            animation: fadeIn 2.5s ease-in;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-            color: var(--accent-gold);
-            text-shadow: 0 2px 15px rgba(212, 175, 55, 0.4);
-            font-weight: normal;
-            letter-spacing: 5px;
-        }
-
-        .dates {
-            font-size: 1.6rem;
-            color: rgba(240, 230, 210, 0.7); /* 使用半透明的米色 */
-            margin-top: 0;
-            letter-spacing: 3px;
-            font-family: sans-serif;
-            font-weight: 300;
-        }
-
-        .gallery {
-            display: flex;
-            justify-content: center;
-            gap: 50px;
-            margin: 60px 20px;
-            flex-wrap: wrap;
-            animation: slideUp 2s ease-out;
-        }
-
-        .photo-frame {
+        /* 主图容器 */
+        .memorial-card {
+            margin-top: 20px;
             position: relative;
-            background: #fff5e6; /* 边框也改为暖白色 */
-            padding: 12px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+            width: 90%;
+            max-width: 1000px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            border: 8px solid #3e3025; /* 相框边框 */
             border-radius: 4px;
-            transform: rotate(-3deg);
-            transition: all 0.4s ease;
-            max-width: 380px;
+            animation: fadeIn 2s ease-in;
         }
 
-        .photo-frame:nth-child(2) {
-            transform: rotate(3deg);
-        }
-
-        .photo-frame:hover {
-            transform: scale(1.03) rotate(0);
-            z-index: 10;
-            box-shadow: 0 20px 45px rgba(212, 175, 55, 0.2);
-        }
-
-        .photo-frame img {
+        .memorial-card img {
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 2px;
-            /* 加强复古滤镜效果，使其更融入暖色背景 */
-            filter: sepia(25%) contrast(110%) brightness(90%);
+            /* 稍微加一点亮度，让它在网页上更通透 */
+            filter: brightness(1.05);
         }
 
+        /* 底部装饰区域 */
         .tribute-section {
+            margin-top: 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: auto;
-            margin-bottom: 30px;
-            width: 100%;
+            animation: slideUp 2s ease-out;
+            margin-bottom: 40px;
         }
 
         .candles {
             display: flex;
-            gap: 60px;
-            margin-bottom: 30px;
+            gap: 80px;
+            margin-bottom: 25px;
         }
 
+        /* 动态蜡烛 */
         .candle {
-            width: 25px;
-            height: 90px;
-            /* 蜡烛颜色改为暖米色 */
-            background: linear-gradient(#fdf6e3, #e9dfc8);
+            width: 20px;
+            height: 70px;
+            background: linear-gradient(#fffdf5, #e0d0b0);
             border-radius: 3px;
             position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
         }
 
         .flame {
-            width: 12px;
-            height: 28px;
-            background: radial-gradient(ellipse at bottom, #fff7cc, #ffae00);
+            width: 10px;
+            height: 25px;
+            background: radial-gradient(ellipse at bottom, #ffffcc, #ffaa00);
             border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
             position: absolute;
-            top: -22px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
-            box-shadow: 0 0 25px rgba(255, 174, 0, 0.8);
-            animation: flicker 1.2s infinite alternate ease-in-out;
-        }
-
-        .flowers {
-            font-size: 2.2rem;
-            display: flex;
-            gap: 25px;
-            opacity: 0.85;
-            filter: sepia(30%); /* 花朵emoji也加入一点复古感 */
+            box-shadow: 0 0 20px rgba(255, 170, 0, 0.8);
+            animation: flicker 1.5s infinite alternate ease-in-out;
         }
 
         .message {
-            margin-top: 30px;
-            font-size: 1.15rem;
-            color: rgba(240, 230, 210, 0.8);
+            font-size: 1.2rem;
+            color: rgba(230, 220, 195, 0.8);
             font-style: italic;
+            letter-spacing: 2px;
             text-align: center;
-            max-width: 600px;
-            line-height: 1.8;
         }
 
-        /* 音乐播放器样式 */
-        .music-player {
-            margin-top: 40px;
-            margin-bottom: 20px;
-            text-align: center;
-            opacity: 0.6;
-            transition: opacity 0.3s;
-        }
-
-        .music-player:hover {
-            opacity: 1;
-        }
-        
-        .music-player p {
-            margin: 5px 0;
-            font-size: 0.9rem;
-            color: var(--accent-gold);
-        }
-        
-        audio {
-            height: 25px;
-            outline: none;
-            border-radius: 15px;
-            background-color: #f0e6d2;
-        }
-        /* 尝试自定义音频控件颜色(部分浏览器有效) */
-        audio::-webkit-media-controls-panel {
-            background-color: #f0e6d2;
-        }
-        audio::-webkit-media-controls-enclosure {
-             border-radius: 15px;
+        /* 音乐提示 */
+        .music-hint {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: #665544;
+            cursor: pointer;
         }
 
         @keyframes flicker {
-            0% { transform: translateX(-50%) scale(1); opacity: 0.8; }
-            100% { transform: translateX(-50%) scale(1.15); opacity: 1; box-shadow: 0 0 35px rgba(255, 174, 0, 0.9); height: 32px; }
+            0% { transform: translateX(-50%) scale(1); opacity: 0.85; }
+            100% { transform: translateX(-50%) scale(1.2); opacity: 1; box-shadow: 0 0 30px rgba(255, 170, 0, 1); }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(60px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .dates { font-size: 1.2rem; }
-            .gallery { gap: 30px; margin-top: 40px; }
-            .photo-frame { max-width: 85%; }
-            .candles { gap: 40px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>永远的拉拉</h1>
-        <p class="dates">2010.5.1 - 2024.11.22</p>
-    </header>
-
-    <main class="gallery">
-        <div class="photo-frame">
-            <img src="image_4.png" alt="拉拉">
-        </div>
-
-        <div class="photo-frame">
-            <img src="image_3.png" alt="草地上的拉拉">
-        </div>
-    </main>
+    <div class="memorial-card">
+        <img src="Gemini_Generated_Image_rxe1oirxe1oirxe1.jpg" alt="永远的拉拉">
+    </div>
 
     <div class="tribute-section">
         <div class="candles">
             <div class="candle"><div class="flame"></div></div>
             <div class="candle"><div class="flame"></div></div>
-            <div class="candle"><div class="flame"></div></div>
-        </div>
-        
-        <div class="flowers">
-            <span>🌼</span><span>🤍</span><span>💐</span><span>🤍</span><span>🌼</span>
         </div>
 
         <p class="message">
-            十四年的陪伴，化作永恒的思念。<br>
-            愿你在那边的世界，依然快乐奔跑。
+            思念化作烛光，照亮你回家的路。
         </p>
 
-        <div class="music-player">
-            <p>🎹 点击播放思念的旋律</p>
-            <audio controls loop>
-                <source src="music.mp3" type="audio/mpeg">
-                您的浏览器不支持音频播放元素。
-            </audio>
-        </div>
+        <audio id="bgMusic" loop autoplay>
+            <source src="music.mp3" type="audio/mpeg">
+        </audio>
+        <div class="music-hint" id="playHint">🎵 背景音乐已开启 (如未播放请点击屏幕)</div>
     </div>
 
+    <script>
+        // 自动播放逻辑处理
+        const audio = document.getElementById('bgMusic');
+        const hint = document.getElementById('playHint');
+
+        // 尝试自动播放
+        let playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                // 自动播放成功
+                console.log("Autoplay started");
+            })
+            .catch(error => {
+                // 自动播放被拦截
+                console.log("Autoplay blocked, waiting for interaction");
+                hint.innerText = "🎵 点击屏幕任意位置播放音乐";
+                hint.style.color = "#d4af37"; //以此提示用户
+                
+                // 监听一次全屏点击事件来触发播放
+                document.body.addEventListener('click', function() {
+                    audio.play();
+                    hint.innerText = "🎵 正在播放";
+                    hint.style.color = "#665544";
+                }, { once: true });
+            });
+        }
+    </script>
 </body>
 </html>
